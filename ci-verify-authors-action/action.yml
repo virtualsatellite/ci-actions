@@ -1,0 +1,16 @@
+name: 'Virtual Satellite 4 - Verify Authors'
+description: 'GitHub Action for checking that all commits are from authors in a given knwon_authors file'
+inputs:
+  known_authors:  # id of input
+    description: 'known_authors file to be used for the verification'
+    required: true
+    default: 'knwon_authos.txt'
+runs:
+  using: "composite"
+  steps: 
+    - run: ${{ github.action_path }}/../bash/verify_commit_authors.sh ${{ inputs.known_authors }}
+      shell: bash
+      env:
+          base_ref:  ${{ github.base_ref || github.ref }}
+          to_repository: ${{ github.repository }}
+          from_repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
