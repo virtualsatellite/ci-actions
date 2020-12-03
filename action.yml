@@ -1,0 +1,7 @@
+name: 'Virtual Satellite 4 - Build Environment Setup'
+description: 'GitHub Action for setting up the build environment for successfully executing virtual satellite workflows'
+runs:
+  using: "composite"
+  steps: 
+    - run: ${{ github.action_path }}/setup.sh
+      shell: bash
