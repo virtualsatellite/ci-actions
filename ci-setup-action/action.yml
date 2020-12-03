@@ -3,5 +3,5 @@ description: 'GitHub Action for setting up the build environment for successfull
 runs:
   using: "composite"
   steps: 
-    - run: ${{ github.action_path }}/setup.sh
+    - run: ${{ github.action_path }}/../bash/setup.sh
       shell: bash
