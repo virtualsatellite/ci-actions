@@ -1,7 +1,7 @@
 name: 'Virtual Satellite 4 - Maven Build'
 description: 'GitHub Action for calling the maven builds'
 inputs:
-    build_job:  # id of input
+  build_job:  # id of input
     description: 'the job such as [spotbugs|surefire|...] to be build'
     required: true
     default: 'assemble'
