@@ -1,7 +1,7 @@
 name: 'Virtual Satellite 4 - Maven Build'
 description: 'GitHub Action for calling the maven builds'
 inputs:
-    job:  # id of input
+    build_job:  # id of input
     description: 'the job such as [spotbugs|surefire|...] to be build'
     required: true
     default: 'assemble'
@@ -13,6 +13,7 @@ runs:
     # --------------------------------------------
     - name: Build-Assemble - Development
       run: ./bash/maven_build.sh -j ${{ inputs.job }} -p development
+      shell: bash
       if: ${{ !contains(github.ref, 'integration') 
            && !contains(github.base_ref, 'integration') 
            && !contains(github.ref, 'integration_snapshot') 
@@ -26,6 +27,7 @@ runs:
     # --------------------------------------------
     - name: Build-Assemble - Integration
       run: ./bash/maven_build.sh -j ${{ inputs.job }} -p integration
+      shell: bash
       if: ${{ github.ref == 'refs/heads/integration' 
           || github.event_name == 'pull_request' && contains(github.base_ref, 'integration')   }}
 
@@ -34,6 +36,7 @@ runs:
     # --------------------------------------------
     - name: Build-Assemble - Release
       run: ./bash/maven_build.sh -j ${{ inputs.job }} -p release
+      shell: bash
       if: ${{ contains(github.ref, 'master') || (contains(github.ref, 'refs/tags/') && contains(github.ref, 'Release')) 
           || github.event_name == 'pull_request' && contains(github.base_ref, 'master')  }}
       env:
