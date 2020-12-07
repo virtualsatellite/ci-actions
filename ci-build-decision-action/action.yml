@@ -12,11 +12,11 @@ runs:
   steps: 
     - run: $BUILD_TYPE_DECISION="development"
       shell: bash
-    - run: $DEPLOY_TYPE_DECISION="release"
-      shell: bash
-    - id: get_build_type_decision
-      run: echo "::set-output name=build_type::$(echo $BUILD_TYPE_DECISION)"
-      shell: bash
-    - id: get_deploy_type_decision 
-      run: echo "::set-output name=deploy_type::$(echo $DEPLOY_TYPE_DECISION)"
-      shell: bash
+    #- run: $DEPLOY_TYPE_DECISION="release"
+    #  shell: bash
+    #- id: get_build_type_decision
+    #  run: echo "::set-output name=build_type::$BUILD_TYPE_DECISION"
+    #  shell: bash
+    #- id: get_deploy_type_decision 
+    #  run: echo "::set-output name=deploy_type::$DEPLOY_TYPE_DECISION"
+    #  shell: bash
