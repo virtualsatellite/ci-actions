@@ -1,12 +1,5 @@
 name: 'Virtual Satellite 4 - Build decision'
 description: 'GitHub Action for making a decision on development, integration or release build same as deployments'
-inputs:
-  - github_ref:  # id of input
-    required: true
-  - github_base_ref:  # id of input
-    required: true
-  - github_event_name:  # id of input
-    required: true
 outputs:
   build_type: 
     description: "Build Type which is either"
