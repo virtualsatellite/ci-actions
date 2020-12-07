@@ -10,9 +10,9 @@ outputs:
 runs:
   using: "composite"
   steps: 
-    - run: $BUILD_TYPE_DECISION="Development"
+    - run: $BUILD_TYPE_DECISION="development"
       shell: bash
-    - run: $DEPLOY_TYPE_DECISION="Release"
+    - run: $DEPLOY_TYPE_DECISION="release"
       shell: bash
     - id: get_build_type_decision
       run: echo "::set-output name=build_type::$(echo $BUILD_TYPE_DECISION)"
