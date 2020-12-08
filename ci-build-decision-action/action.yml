@@ -6,7 +6,7 @@ outputs:
     value: ${{ steps.get_build_type_decision.outputs.build_type }}
   deploy_type: 
     description: "Deploy Type which is either"
-    value: ${{ steps.get_deploy_type_decision.outputs.deploy_type }}
+    value: ${{ steps.get_build_type_decision.outputs.deploy_type }}
 runs:
   using: "composite"
   steps: 
@@ -16,8 +16,6 @@ runs:
         DEPLOY_TYPE_DECISION="release"
         echo "Current Build... $BUILD_TYPE_DECISION"
         echo "Current Deploy... $DEPLOY_TYPE_DECISION"
-        echo "::debug::Current Build Type $BUILD_TYPE_DECISION"
-        echo "::debug::Current Deploy Type $DEPLOY_TYPE_DECISION"
-        echo "::set-output name=build_type::$(echo $BUILD_TYPE_DECISION)"
-        echo "::set-output name=deploy_type::$(echo $DEPLOY_TYPE_DECISION)"
+        echo "::set-output name=build_type::$BUILD_TYPE_DECISION"
+        echo "::set-output name=deploy_type::$DEPLOY_TYPE_DECISION"
       shell: bash
