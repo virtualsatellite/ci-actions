@@ -27,8 +27,8 @@ printHeader() {
 	echo "Virtual Satellite - GitHub Build Decision Action"
 	echo ""
 	echo "Output Variables:"
-	echo " BUILD_TYPE_DECISION  Tells if the build is either one of (development|integration|release)"
-	echo " DEPLOY_TYPE_DECISION Tells if the build is to be released or kept (deploy|keep)"
+	echo " BUILD_TYPE_DECISION  Tells if the build is either one of (development|integration|release|unknown)"
+	echo " DEPLOY_TYPE_DECISION Tells if the build is to be released or kept (deploy|retain)"
 	echo ""
 	echo "Current environment for making decision:"
 	echo "GITHUB_REF:        $GITHUB_REF"
@@ -73,7 +73,7 @@ makeDeployDecision() {
 	then
 		DEPLOY_TYPE_DECISION=deploy
 	else
-		DEPLOY_TYPE_DECISION=keep
+		DEPLOY_TYPE_DECISION=retain
 	fi
 }
 
