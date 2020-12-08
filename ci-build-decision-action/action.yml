@@ -12,7 +12,7 @@ runs:
   steps: 
     - id: get_build_type_decision
       run: |
-        source ${{ github.action_path }}/../bash/setup.sh
+        source ${{ github.action_path }}/../bash/build_decision.sh
         echo "Current Build... $BUILD_TYPE_DECISION"
         echo "Current Deploy... $DEPLOY_TYPE_DECISION"
         echo "::set-output name=build_type::$BUILD_TYPE_DECISION"
