@@ -45,18 +45,18 @@ makeBuildDecision() {
 		[[ $GITHUB_REF != *"development_snapshot"* ]] || \
 		[[ $GITHUB_REF != *"master"* ]] || \
 		[[ $GITHUB_BASE_REF != *"master"* ]] || \
-		[[ $GITHUB_REF != *"refs/tags/Release"* ]];
+		[[ $GITHUB_REF != *"refs/tags/Release"* ]] ;
 	then
 		BUILD_TYPE_DECISION=development
 		
 	elif	[[ $GITHUB_REF == "refs/heads/integration" ]] || \
-			[[ $GITHUB_BASE_REF != *"integration"* ]] && [[ $GITHUB_EVENT_NAME == "pull_request" ]];
+			[[ $GITHUB_BASE_REF != *"integration"* ]] && [[ $GITHUB_EVENT_NAME == "pull_request" ]] ;
 	then
 		BUILD_TYPE_DECISION=integration
 		
 	elif	[[ $GITHUB_REF == *"refs/heads/master"* ]] || \
 			[[ $GITHUB_REF == *"refs/tags/Release"*]] || \
-			[[ $GITHUB_BASE_REF != *"master"* ]] && [[ $GITHUB_EVENT_NAME == "pull_request" ]];
+			[[ $GITHUB_BASE_REF != *"master"* ]] && [[ $GITHUB_EVENT_NAME == "pull_request" ]] ;
 	then
 		BUILD_TYPE_DECISION=release
 		
@@ -69,7 +69,7 @@ makeBuildDecision() {
 makeDeployDecision() {
 	if	[[ $GITHUB_REF == "refs/heads/development" ]] || \
 		[[ $GITHUB_REF == "refs/heads/development" ]] || \
-		[[ $GITHUB_REF == "refs/tags/Release"* ]];
+		[[ $GITHUB_REF == "refs/tags/Release"* ]] ;
 	then
 		DEPLOY_TYPE_DECISION=deploy
 	else
