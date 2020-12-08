@@ -14,7 +14,9 @@ runs:
       shell: bash
     - run: DEPLOY_TYPE_DECISION="release"
       shell: bash
-    - run: echo "Test Output..."
+    - run: echo "Current Build... $BUILD_TYPE_DECISION"
+      shell: bash
+    - run: echo "Current Deploy... $DEPLOY_TYPE_DECISION"
       shell: bash
     - run: echo "::debug::Current Build Type $BUILD_TYPE_DECISION"
       shell: bash
