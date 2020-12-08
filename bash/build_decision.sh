@@ -55,7 +55,7 @@ makeBuildDecision() {
 		BUILD_TYPE_DECISION=integration
 		
 	elif	[[ $GITHUB_REF == *"refs/heads/master"* ]] || \
-			[[ $GITHUB_REF == *"refs/tags/Release"*]] || \
+			[[ $GITHUB_REF == *"refs/tags/Release"* ]] || \
 			[[ $GITHUB_BASE_REF != *"master"* ]] && [[ $GITHUB_EVENT_NAME == "pull_request" ]] ;
 	then
 		BUILD_TYPE_DECISION=release
