@@ -14,6 +14,10 @@ runs:
       shell: bash
     - run: DEPLOY_TYPE_DECISION="release"
       shell: bash
+    - run: echo "::debug::Current Build Type $BUILD_TYPE_DECISION"
+      shell: bash
+    - run: echo "::debug::Current Deploy Type $DEPLOY_TYPE_DECISION"
+      shell: bash
     - id: get_build_type_decision
       run: echo "::set-output name=build_type::$(echo $BUILD_TYPE_DECISION)"
       shell: bash
