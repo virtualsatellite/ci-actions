@@ -18,3 +18,7 @@ runs:
         echo "::set-output name=build_type::$BUILD_TYPE_DECISION"
         echo "::set-output name=deploy_type::$DEPLOY_TYPE_DECISION"
       shell: bash
+      env:
+        github_ref: ${{ github.ref }}
+        github_base_ref: ${{ github.base_ref }}
+        github_event_name: ${{ github.event_name }}
