@@ -10,10 +10,11 @@ outputs:
 runs:
   using: "composite"
   steps: 
-    break
     - run: BUILD_TYPE_DECISION="development"
       shell: bash
     - run: DEPLOY_TYPE_DECISION="release"
+      shell: bash
+    - run: echo "Test Output..."
       shell: bash
     - run: echo "::debug::Current Build Type $BUILD_TYPE_DECISION"
       shell: bash
