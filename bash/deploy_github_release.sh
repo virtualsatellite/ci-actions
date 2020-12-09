@@ -15,8 +15,8 @@
 # sourceforge
 # --------------------------------------------------------------------------
 
-# turn of failing
-set +e
+# turn on failing
+set -e
 
 # Store the name of the command calling from commandline to be properly
 # displayed in case of usage issues
@@ -75,8 +75,7 @@ deployToGitHubReleases() {
 		TAG_NAME=${GITHUB_REF#refs/*/}
 		echo "Uploading release to $TAG_NAME tag in $GITHUB_REPOSITORY ..."
 		
-		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c delete -r "$TAG_NAME"
-		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c create -r "$TAG_NAME" -d "Development/Integration build on latest commit by Github Actions CI - $GITHUB_REPOSITORY ($GITHUB_SHA) - $(date +'%F %T %Z'). This release is subject to constant change."
+		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c patch -r "$TAG_NAME" -d "Release build for tag ($TAG_NAME) by Github Actions CI - $GITHUB_REPOSITORY ($GITHUB_SHA) - $(date +'%F %T %Z'). This is a stable Release."
 		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c multi -r "$TAG_NAME" -p "*.zip" -dir deploy/secured
 		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c multi -r "$TAG_NAME" -p "*.tar.gz" -dir deploy/secured
 		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c multi -r "$TAG_NAME" -p "*.pdf" -dir "de.dlr.sc.virsat.docs*/docs"
