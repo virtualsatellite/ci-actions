@@ -45,7 +45,7 @@ createOrMoveTag() {
 		echo "Creating the $TAG_NAME tag in $GITHUB_REPOSITORY"
 		
 		git tag -f "$TAG_NAME"
-		git remote add github-repo "https://GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+		git remote add github-repo "https://$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
 		git push -f github-repo "$TAG_NAME"
 		git remote remove github-repo
 		
