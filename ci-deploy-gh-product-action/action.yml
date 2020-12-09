@@ -1,0 +1,19 @@
+name: 'Virtual Satellite 4 - Deploy Product'
+description: 'GitHub Action for deploying and assembled product to sourceforge and GitHub releases'
+inputs:
+  build_profile:
+    desription: 'the profile to be build such as (development, integration, release)'
+    required: true
+    default: 'unset'
+runs:
+  using: "composite"
+  steps: 
+    - run: |
+        echo "--- About to deploy to GitHub Releases"
+        ${{ github.action_path }}/../bash/deploy_github_release.sh \
+          --profile ${{ inputs.build_profile }} \
+          --token ${{ secrets.GITHUB_TOKEN }} \
+          --ref ${{ github.ref}} \
+          --repository ${{ github.repository }} \
+          --sha ${{ github.sha }}
+      shell: bash
