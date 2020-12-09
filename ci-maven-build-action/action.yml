@@ -15,7 +15,7 @@ runs:
     - run: |
         echo "--- Trying to identify environment such as zmq, vtq, etc."
         source ${{ github.action_path }}/../bash/setup_environment.sh
-        echo "--- Installing and running OverTarget""
+        echo "--- Installing and running OverTarget"
         ${{ github.action_path }}/../bash/maven_build.sh -j dependencies -p dependencies
         echo "--- Starting Maven Build - ${{ inputs.build_job }} - ${{ inputs.build_profile }}"
         ${{ github.action_path }}/../bash/maven_build.sh -j ${{ inputs.build_job }} -p ${{ inputs.build_profile }}

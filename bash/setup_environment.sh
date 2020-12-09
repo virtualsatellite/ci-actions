@@ -58,16 +58,16 @@ echo "Current LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}"
 # ------------------------------------
 
 # Fin out where java is
-JAVA_INSTALL_BIN=$(readlink -f $(which java))
+JAVA_INSTALL_BIN=$(readlink -f "$(which java)")
 JAVA_INSTALL=${JAVA_INSTALL_BIN%"/bin/java"}
-JAVA_LIB_AWT=$(find $JAVA_INSTALL -name libawt.so)
-JAVA_LIB_JVM=$(find $JAVA_INSTALL -name libjvm.so)
+JAVA_LIB_AWT=$(find "$JAVA_INSTALL" -name libawt.so)
+JAVA_LIB_JVM=$(find "$JAVA_INSTALL" -name libjvm.so)
 
 echo "Found Java Bin in the following location: ${JAVA_INSTALL_BIN}"
 echo "Assuming Java installation here: ${JAVA_INSTALL}"
 
-augmentLdLibraryPath $(dirname $JAVA_LIB_AWT)
-augmentLdLibraryPath $(dirname $JAVA_LIB_JVM)
+augmentLdLibraryPath "$(dirname "$JAVA_LIB_AWT")"
+augmentLdLibraryPath "$(dirname "$JAVA_LIB_JVM")"
 
 # -------------------------------------
 # Start setting up vtk and zmq so dirs
