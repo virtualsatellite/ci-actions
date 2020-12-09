@@ -20,4 +20,6 @@ runs:
         echo "--- Starting Maven Build - ${{ inputs.build_job }} - ${{ inputs.build_profile }}"
         ${{ github.action_path }}/../bash/maven_build.sh -j ${{ inputs.build_job }} -p ${{ inputs.build_profile }}
       shell: bash
+      env:
+          github.sha:  ${{ github.sha }}
      
