@@ -170,8 +170,6 @@ case $MAVEN_PROFILE in
                         exit 1
 esac
 
-source ./bash/setup_environment.sh
-
 # Decide which job to run
 case $TRAVIS_JOB in
     dependencies )      callMavenDependencies
