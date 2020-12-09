@@ -101,8 +101,7 @@ if [ "$VS_JAR_VTK" == "" ]; then
 fi 
 
 if [ "$VS_JAR_VTK" == "" ]; then
-	echo "Failed to detect a vtk"
-	exit 1
+	echo "WARNING - Failed to detect a vtk"
 fi 
 
 echo "Trying to find general zmq installation with which zmq.jar"
@@ -119,8 +118,7 @@ if [ "$VS_JAR_ZMQ" == "" ]; then
 fi 
 
 if [ "$VS_JAR_ZMQ" == "" ]; then
-	echo "Failed to detect ZMQ"
-	exit 1
+	echo "WARNING - Failed to detect ZMQ"
 fi 
 
 export VS_JAR_VTK
