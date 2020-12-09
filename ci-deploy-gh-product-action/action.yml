@@ -21,5 +21,6 @@ runs:
         #  --ref ${{ github.ref}} \
         #  --repository ${{ github.repository }} \
         #  --sha ${{ github.sha }}
+        ${{ github.action_path }}/../bash/github_release_api.sh -t ${{ inputs.gh_token }} -r "integration_snapshot"
         ${{ github.action_path }}/../bash/github_release_api.sh -t ${{ inputs.gh_token }} -c multi -r "integration_snapshot" -p "EquationEditorDataModel.png" -dir .
       shell: bash
