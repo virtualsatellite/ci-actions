@@ -68,7 +68,7 @@ makeBuildDecision() {
 
 makeDeployDecision() {
 	if	[[ $GITHUB_REF == "refs/heads/development" ]] || \
-		[[ $GITHUB_REF == "refs/heads/development" ]] || \
+		[[ $GITHUB_REF == "refs/heads/integration" ]] || \
 		[[ $GITHUB_REF == "refs/tags/Release"* ]] ;
 	then
 		DEPLOY_TYPE_DECISION=deploy
