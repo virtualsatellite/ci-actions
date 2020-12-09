@@ -1,21 +1,17 @@
 name: 'Virtual Satellite 4 - Maven Build'
 description: 'GitHub Action for calling the maven builds'
 inputs:
-  build_job:  # id of input
-    description: 'the job such as [spotbugs|surefire|...]'
+  build_job:
+    description: 'the job such as (spotbugs|surefire|...)'
     required: true
     default: 'assemble'
   build_profile:
-    desription: 'the profile to be build such as [development, integration, release]'
+    desription: 'the profile to be build such as (development, integration, release)'
     required: true
     default: 'development'
 runs:
   using: "composite"
   steps: 
-    # --------------------------------------------
-    # Development and Feature branches
-    # --------------------------------------------
-    - name: Build - Calling maven build
-      run: ./bash/maven_build.sh -j ${{ inputs.build_job }} -p ${{ inputs.build_profile }}
+    - run: ${{ github.action_path }}/../bash/maven_build.sh -j ${{ inputs.build_job }} -p ${{ inputs.build_profile }}
       shell: bash
      

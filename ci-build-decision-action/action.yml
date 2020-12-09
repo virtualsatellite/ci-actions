@@ -1,4 +1,4 @@
-name: 'Virtual Satellite 4 - Build decision'
+name: 'Virtual Satellite 4 - Build Decision'
 description: 'GitHub Action for making a decision on development, integration or release build same as deployments'
 outputs:
   build_type: 
