@@ -39,14 +39,14 @@ printUsage() {
 
 createOrMoveTag() {
 	echo "About to create the tags"
-	if [ $MAVEN_PROFILE == "development" ] || \
-	   [ $MAVEN_PROFILE == "integration" ]; then
-		TAG_NAME=$MAVEN_PROFILE_snapshot
+	if [[ $MAVEN_PROFILE == "development" ]] || \
+	   [[ $MAVEN_PROFILE == "integration" ]]; then
+		TAG_NAME=$MAVEN_PROFILE
 		echo "Creating the $TAG_NAME tag in $GITHUB_REPOSITORY"
 		
-		git tag -f $TAG_NAME
-		git remote add github-repo https://GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
-		git push -f github-repo $TAG_NAME
+		git tag -f "$TAG_NAME"
+		git remote add github-repo "https://GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+		git push -f github-repo "$TAG_NAME"
 		git remote remove github-repo
 		
 		echo "Created or moved $TAG_NAME tag"
@@ -57,32 +57,32 @@ createOrMoveTag() {
 }
 
 deployToGitHubReleases() {
-	echo "About to deploy to the GitHub Release
-	if [ $MAVEN_PROFILE == "development" ] || \
-	   [ $MAVEN_PROFILE == "integration" ]; then
-		TAG_NAME=$MAVEN_PROFILE_snapshot
-		echo "Uploading development/integration to $TAG_NAME tag in $GITHUB_REPOSITORY"
+	echo "About to deploy to the GitHub Release"
+	if [[ $MAVEN_PROFILE == "development" ]] || \
+	   [[ $MAVEN_PROFILE == "integration" ]]; then
+		TAG_NAME=$MAVEN_PROFILE
+		echo "Uploading development/integration to $TAG_NAME tag in $GITHUB_REPOSITORY ..."
 		
-		${__DIR}/github_release_api.sh -t ${{ secrets.GITHUB_TOKEN }} -c delete -r $TAG_NAME
-		${__DIR}/github_release_api.sh -t ${{ secrets.GITHUB_TOKEN }} -c create -r $TAG_NAME -d "Development/Integration build on latest commit by Github Actions CI - $GITHUB_REPOSITORY ($GITHUB_SHA) - $(date +'%F %T %Z'). This release is subject to constant change."
-		${__DIR}/github_release_api.sh -t ${{ secrets.GITHUB_TOKEN }} -c multi -r $TAG_NAME -p "*.zip" -dir deploy/unsecured
-		${__DIR}/github_release_api.sh -t ${{ secrets.GITHUB_TOKEN }} -c multi -r $TAG_NAME -p "*.tar.gz" -dir deploy/unsecured
-		${__DIR}/github_release_api.sh -t ${{ secrets.GITHUB_TOKEN }} -c multi -r $TAG_NAME -p "*.pdf" -dir "de.dlr.sc.virsat.docs*/docs"
+		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c delete -r "$TAG_NAME"
+		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c create -r "$TAG_NAME" -d "Development/Integration build on latest commit by Github Actions CI - $GITHUB_REPOSITORY ($GITHUB_SHA) - $(date +'%F %T %Z'). This release is subject to constant change."
+		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c multi -r "$TAG_NAME" -p "*.zip" -dir deploy/unsecured
+		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c multi -r "$TAG_NAME" -p "*.tar.gz" -dir deploy/unsecured
+		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c multi -r "$TAG_NAME" -p "*.pdf" -dir "de.dlr.sc.virsat.docs*/docs"
 
 		echo "Uploaded to $TAG_NAME tag"
 	
-	elif [ $MAVEN_PROFILE == "release" ]; then
+	elif [[ $MAVEN_PROFILE == "release" ]]; then
 		TAG_NAME=${GITHUB_REF#refs/*/}
-		echo "Uploading release to $TAG_NAME tag in $GITHUB_REPOSITORY"
+		echo "Uploading release to $TAG_NAME tag in $GITHUB_REPOSITORY ..."
 		
-		${__DIR}/github_release_api.sh -t ${{ secrets.GITHUB_TOKEN }} -c delete -r $TAG_NAME
-		${__DIR}/github_release_api.sh -t ${{ secrets.GITHUB_TOKEN }} -c create -r $TAG_NAME -d Release build on tag $TAG_NAME by Github Actions CI - $GITHUB_REPOSITORY ($GITHUB_SHA) - $(date +'%F %T %Z'). This is a stable release."
-		${__DIR}/github_release_api.sh -t ${{ secrets.GITHUB_TOKEN }} -c multi -r $TAG_NAME -p "*.zip" -dir deploy/unsecured
-		${__DIR}/github_release_api.sh -t ${{ secrets.GITHUB_TOKEN }} -c multi -r $TAG_NAME -p "*.tar.gz" -dir deploy/unsecured
-		${__DIR}/github_release_api.sh -t ${{ secrets.GITHUB_TOKEN }} -c multi -r $TAG_NAME -p "*.pdf" -dir "de.dlr.sc.virsat.docs*/docs"
+		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c delete -r "$TAG_NAME"
+		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c create -r "$TAG_NAME" -d "Development/Integration build on latest commit by Github Actions CI - $GITHUB_REPOSITORY ($GITHUB_SHA) - $(date +'%F %T %Z'). This release is subject to constant change."
+		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c multi -r "$TAG_NAME" -p "*.zip" -dir deploy/secured
+		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c multi -r "$TAG_NAME" -p "*.tar.gz" -dir deploy/secured
+		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c multi -r "$TAG_NAME" -p "*.pdf" -dir "de.dlr.sc.virsat.docs*/docs"
 
-		echo "Uploaded to $TAG_NAME tag
-		"
+		echo "Uploaded to $TAG_NAME tag"
+		
 	else
 		echo "Not deploying to GitHub Releases"
 	fi
@@ -124,25 +124,25 @@ case $MAVEN_PROFILE in
                         exit 1
 esac
 
-if [ -z $GITHUB_REF ]; then
+if [ -z "$GITHUB_REF" ]; then
    echo "ERROR - GitHub REF is not provided."
    printUsage
    exit 1
 fi
 
-if [ -z $GITHUB_TOKEN ]; then
+if [ -z "$GITHUB_TOKEN" ]; then
    echo "ERROR - GitHub Token for writing to the repository is not provided."
    printUsage
    exit 1
 fi
 
-if [ -z $GITHUB_REPOSITORY ]; then
+if [ -z "$GITHUB_REPOSITORY" ]; then
    echo "ERROR - There is not GitHub repository provided in which to create the tags and releases"
    printUsage
    exit 1
 fi
 
-if [ -z $GITHUB_SHA ]; then
+if [ -z "$GITHUB_SHA" ]; then
    echo "ERROR - The SHA for the GitHub commit is not provided"
    printUsage
    exit 1
