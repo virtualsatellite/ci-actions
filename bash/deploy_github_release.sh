@@ -41,7 +41,7 @@ createOrMoveTag() {
 	echo "About to create the tags"
 	if [[ $MAVEN_PROFILE == "development" ]] || \
 	   [[ $MAVEN_PROFILE == "integration" ]]; then
-		TAG_NAME=$MAVEN_PROFILE
+		TAG_NAME=${MAVEN_PROFILE}_snapshot
 		echo "Creating the $TAG_NAME tag in $GITHUB_REPOSITORY"
 		
 		git tag -f "$TAG_NAME"
@@ -60,7 +60,7 @@ deployToGitHubReleases() {
 	echo "About to deploy to the GitHub Release"
 	if [[ $MAVEN_PROFILE == "development" ]] || \
 	   [[ $MAVEN_PROFILE == "integration" ]]; then
-		TAG_NAME=$MAVEN_PROFILE
+		TAG_NAME=${MAVEN_PROFILE}_snapshot
 		echo "Uploading development/integration to $TAG_NAME tag in $GITHUB_REPOSITORY ..."
 		
 		"${__DIR}/github_release_api.sh" -t "$GITHUB_TOKEN" -c delete -r "$TAG_NAME"
