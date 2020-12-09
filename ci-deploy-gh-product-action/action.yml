@@ -14,6 +14,7 @@ runs:
   steps: 
     - run: |
         echo "--- About to deploy to GitHub Releases"
+        echo "Token: ${{ inputs.gh_token }}"
         #${{ github.action_path }}/../bash/deploy_github_release.sh \
         #  --profile ${{ inputs.build_profile }} \
         #  --token ${{ inputs.gh_token }} \
