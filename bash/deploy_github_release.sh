@@ -15,8 +15,8 @@
 # sourceforge
 # --------------------------------------------------------------------------
 
-# fail the script if a call fails
-set -e
+# turn of failing
+set +e
 
 # Store the name of the command calling from commandline to be properly
 # displayed in case of usage issues
