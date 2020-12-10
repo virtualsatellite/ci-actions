@@ -59,7 +59,7 @@ echo "-----------------------------------------------"
 sudo apt-get install openjdk-8-jdk ant expect jq
 
 
-if [[ ! -z "$INSTALL_XVFB" && "$INSTALL_XVFB"==true ]]; then
+if [[ ! -z "$INSTALL_XVFB" && "$INSTALL_XVFB" == true ]]; then
 	echo ""
 	echo "-----------------------------------------------"	
 	echo "apt install metacity and xvfb"
@@ -74,6 +74,6 @@ if [[ ! -z "$INSTALL_PKGS" && -f "$INSTALL_PKGS" ]]; then
 	echo "apt install additional packages"
 	echo "-----------------------------------------------"
 	echo "Detected the packages file $INSTALL_PKGS..."
-	echo "Current content of file: $(cat $INSTALL_PKGS)"
+	echo "Current content of file: $(cat "$INSTALL_PKGS")"
 	sudo apt-get install $(cat $INSTALL_PKGS)
 fi
