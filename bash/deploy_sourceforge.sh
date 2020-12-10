@@ -77,17 +77,17 @@ upload() {
 	echo "Remote Directory P2:  $REMOTE_DIR_P2" 
 	echo "Remote Directory BIN: $REMOTE_DIR_BIN" 
 	echo ""
-	echo "starting uploads..."
+	echo "Starting uploads..."
 	if [[ -d $LOCAL_DIR_P2 ]] ; then
 		echo "Uploading p2 directory..."
-		rsync "$RSYNC_OPTIONS" "$LOCAL_DIR_P2" "dlrscmns@frs.sourceforge.net:/home/frs/project/$REMOTE_DIR_P2"
+		rsync $RSYNC_OPTIONS "$LOCAL_DIR_P2" "dlrscmns@frs.sourceforge.net:/home/frs/project/$REMOTE_DIR_P2"
 	else
 		echo "P2 directory was not found. Nothing was uploaded."
 	fi
 	
 	if [[ -d $LOCAL_DIR_BIN ]] ; then
 		echo "Uploading bin directory..."
-		rsync "$RSYNC_OPTIONS" "$LOCAL_DIR_BIN" "dlrscmns@frs.sourceforge.net:/home/frs/project/$REMOTE_DIR_BIN"
+		rsync $RSYNC_OPTIONS "$LOCAL_DIR_BIN" "dlrscmns@frs.sourceforge.net:/home/frs/project/$REMOTE_DIR_BIN"
 	else
 		echo "Bin directory was not found. Nothing was uploaded."
 	fi
