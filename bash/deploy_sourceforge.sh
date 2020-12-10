@@ -14,6 +14,8 @@
 # This script handles all upload activities of the project Virtual Satellite
 # --------------------------------------------------------------------------
 
+set -e
+
 # Store the name of the command calling from commandline to be properly
 # displayed in case of usage issues
 COMMAND=$0
