@@ -69,7 +69,7 @@ if [[ ! -z "$INSTALL_XVFB" && "$INSTALL_XVFB"==true ]]; then
 	sudo apt-get install xvfb metacity
 fi
 
-if [[ ! -z "$INSTALL_PKGS" && -f "$INSTALL_PKGS"]]; then
+if [[ ! -z "$INSTALL_PKGS" && -f "$INSTALL_PKGS" ]]; then
 	echo ""
 	echo "-----------------------------------------------"	
 	echo "apt install additional packages"
