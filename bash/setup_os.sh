@@ -76,5 +76,5 @@ if [[ ! -z "$INSTALL_PKGS" && -f "$INSTALL_PKGS" ]]; then
 	echo "-----------------------------------------------"
 	echo "Detected the packages file $INSTALL_PKGS..."
 	echo "Current content of file: $(cat $INSTALL_PKGS)"
-	sudo apt-get install < $INSTALL_PKGS
+	sudo apt-get install $(cat $INSTALL_PKGS)
 fi
