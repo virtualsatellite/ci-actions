@@ -1,5 +1,5 @@
-name: 'Virtual Satellite 4 - Deploy Product'
-description: 'GitHub Action for deploying and assembled product to sourceforge and GitHub releases'
+name: 'Virtual Satellite 4 - Deploy Product GitHub Releases'
+description: 'GitHub Action for deploying an assembled product to GitHub Releases'
 inputs:
   build_profile:
     desription: 'the profile to be build such as (development, integration, release)'

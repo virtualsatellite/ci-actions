@@ -1,0 +1,34 @@
+name: 'Virtual Satellite 4 - Deploy Product Sourceforge'
+description: 'GitHub Action for deploying an assembled product to sourceforge'
+inputs:
+  build_profile:
+    desription: 'the profile to be build such as (development, integration, release)'
+    required: true
+    default: 'unset'
+  openssh_pass:
+    desription: 'the secret for decrypting the key file'
+    required: true
+    default: 'unset'
+  ssh_key_pass:
+    desription: 'the secret for using the ssh key file'
+    required: true
+    default: 'unset'
+  local_dir:
+    desription: 'the local directory set to be uploaded'
+    required: true
+    default: 'unset'
+  remote_dir:
+    desription: 'the remote directory set to be uploaded'
+    required: true
+    default: 'unset'
+runs:
+  using: "composite"
+  steps: 
+    - run: |
+        echo "--- About to deploy to Sourceforge"
+        ${{ github.action_path }}/../bash/deploy_sourceforge.sh \
+          --upload ${{ inputs.build_profile }} \
+          --setup  ${{ inputs.openssh_pass }} ${{ inputs.ssh_key_pass }} \
+          --localdir ${{ inputs.local_dir }} \
+          --remotedir ${{ inputs.remote_dir }} \
+      shell: bash
