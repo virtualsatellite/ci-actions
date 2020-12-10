@@ -32,8 +32,7 @@ printUsage() {
 # process all command line arguments
 while [ "$1" != "" ]; do
     case $1 in
-        -x | --xvfb )           shift
-                                INSTALL_XVFB=true
+        -x | --xvfb )           INSTALL_XVFB=true
                                 ;;
         -p | --pkgs )           shift
                                 INSTALL_PKGS=$1
