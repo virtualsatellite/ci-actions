@@ -1,7 +1,14 @@
 name: 'Virtual Satellite 4 - Build Environment Variable Setup'
 description: 'GitHub Action for setting up the build environment for successfully executing virtual satellite workflows'
-runs:
+inputs:
+  xvfb:
+    desription: 'Set the xvfb option'
+    default: ''
+  pkgs_file:
+    desription: 'file containing additional packages to be installed'
+    default: 'apt_packages'
+  runs:
   using: "composite"
   steps: 
-    - run: ${{ github.action_path }}/../bash/setup_os.sh
+    - run: ${{ github.action_path }}/../bash/setup_os.sh ${{ inputs.xvfb }} -p ${{ inputs.pkgs_file }}
       shell: bash
