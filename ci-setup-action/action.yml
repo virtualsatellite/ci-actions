@@ -7,7 +7,7 @@ inputs:
   pkgs_file:
     desription: 'file containing additional packages to be installed'
     default: 'apt_packages'
-  runs:
+runs:
   using: "composite"
   steps: 
     - run: ${{ github.action_path }}/../bash/setup_os.sh ${{ inputs.xvfb }} -p ${{ inputs.pkgs_file }}
