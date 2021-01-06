@@ -66,6 +66,7 @@ checkforMavenProblems() {
 	| grep -v "\[WARNING\] Checksum validation failed" \
 	| grep -v "\[WARNING\] Could not validate integrity of download" \
 	| grep -v "\[WARNING\] Some attempts to read artifact" \
+	| grep -v "\[WARNING\] The requested profile" \
 	| grep -v "An error occurred while transferring artifact packed:" \
 	| grep -v "Retry another mirror:" \
 	| grep -v "Artifact not found:" \
