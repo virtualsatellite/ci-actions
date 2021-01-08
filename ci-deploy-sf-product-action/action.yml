@@ -36,8 +36,8 @@ runs:
     - run: |
         echo "--- About to deploy to Sourceforge"
         ${{ github.action_path }}/../bash/deploy_sourceforge.sh \
-          --upload ${{ inputs.build_profile }} \
-          --setup  ${{ inputs.openssl_pass }} ${{ inputs.ssh_key_pass }} \
-          --localdir ${{ inputs.local_dir }} \
-          --remotedir ${{ inputs.remote_dir }} \
+          --upload "${{ inputs.build_profile }}" \
+          --setup  "${{ inputs.openssl_pass }}" "${{ inputs.ssh_key_pass }}" \
+          --localdir "${{ inputs.local_dir }}" \
+          --remotedir "${{ inputs.remote_dir }}" \
       shell: bash
