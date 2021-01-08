@@ -106,14 +106,21 @@ callGitHubUploadAsset() {
 }
 
 callGitHubUploadMultipleAssets() {
-  RELEASE_ASSET_FILES=$(find $(pwd -P)/$RELEASE_ASSET_ROOT -name "$RELEASE_ASSET_PATTERN")
+  FIND_ROOT_DIR=$(pwd -P)/$RELEASE_ASSET_ROOT
 
-  echo "About to uplaod files $RELEASE_ASSET_FILES"
-  for FILE in $RELEASE_ASSET_FILES; do
-    RELEASE_ASSET_FILE=$FILE
-    echo "uplaoding file $RELEASE_ASSET_FILE"
-    callGitHubUploadAsset
-  done
+  if ls $FIND_ROOT_DIR 1> /dev/null 2>&1; then
+    echo "$FIND_ROOT_DIR exists. Searching for $RELEASE_ASSET_PATTERN ..."
+    RELEASE_ASSET_FILES=$(find $(pwd -P)/$RELEASE_ASSET_ROOT -name "$RELEASE_ASSET_PATTERN")
+
+    echo "About to upload files $RELEASE_ASSET_FILES"
+    for FILE in $RELEASE_ASSET_FILES; do
+      RELEASE_ASSET_FILE=$FILE
+      echo "uploading file $RELEASE_ASSET_FILE"
+      callGitHubUploadAsset
+    done
+  else
+    echo "$FIND_ROOT_DIR does not exists. Not uploading any assets ..."
+  fi
 }
 
 # process all command line arguments
