@@ -4,7 +4,7 @@ A GitHub composite run steps action to set up the environment to sucessfully bui
 
 ## Usage
 
-TBD
+Please checkout *[Virtual Satellite 4 - Core](https://github.com/virtualsatellite/VirtualSatellite4-Core)* for usage examples. 
 
 ## Contribution
 
