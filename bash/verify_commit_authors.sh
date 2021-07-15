@@ -73,6 +73,8 @@ echo "[Info] ENV base_ref: ${BASE_REF}"
 echo "[Info] ENV to_repository: ${TO_REPOSITORY}"
 echo "[Info] ENV from_repository: ${FROM_REPOSITORY}"
 
+echo "[Info] ENV repo default actions: ${GITHUB_REPOSITORY}"
+
 # Now checking if we are on normal PR or on a forked PR
 # we usually assume we are on a fork
 STRICT_RULES="true"
