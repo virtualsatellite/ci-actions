@@ -65,6 +65,10 @@ echo "[Info] ------------------------------------"
 echo "[Info] Fork detection"
 echo "[Info] ------------------------------------"
 
+echo "[Info] Repo Slug: ${BASE_REF}"
+echo "[Info] Repo Slug: ${TO_REPOSITORY}"
+echo "[Info] Repo Slug: ${FROM_REPOSITORY}"
+
 # Now checking if we are on normal PR or on a forked PR
 # we usually assume we are on a fork
 STRICT_RULES="true"
