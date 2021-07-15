@@ -68,25 +68,16 @@ echo "[Info] ------------------------------------"
 echo "[Info] ENV github_ref: ${GITHUB_REF}"
 echo "[Info] ENV github_base_ref: ${GITHUB_BASE_REF}"
 echo "[Info] ENV github_event_name: ${GITHUB_EVENT_NAME}"
-
-echo "[Info] ENV base_ref: ${BASE_REF}"
 echo "[Info] ENV to_repository: ${TO_REPOSITORY}"
 echo "[Info] ENV from_repository: ${FROM_REPOSITORY}"
-
-echo "[Info] ENV github_to_repository: ${GITHUB_TO_REPOSITORY}"
-echo "[Info] ENV github_from_repository: ${GITHUB_FROM_REPOSITORY}"
-
-echo "[Info] ENV repo default actions: ${GITHUB_REPOSITORY}"
 
 # Now checking if we are on normal PR or on a forked PR
 # we usually assume we are on a fork
 STRICT_RULES="true"
-if [ ! -v $TRAVIS_PULL_REQUEST ]; then 
-	echo "[Info] Running on Travis CI"
-	echo "[Info] Repo Slug: ${TRAVIS_REPO_SLUG}"
-	echo "[Info] PR   Slug: ${TRAVIS_PULL_REQUEST_SLUG}"
+if [ ! -v $CI ]; then 
+	echo "[Info] Running on Github Actions"
 
-	if [ "$TRAVIS_REPO_SLUG" ==  "$TRAVIS_PULL_REQUEST_SLUG" ]; then
+	if [ "$FROM_REPOSITORY" == "$TO_REPOSITORY" ]; then
 		echo "[Info] Building a local PR, RELAXED rules apply!"
 		STRICT_RULES="false"
 	else
