@@ -68,6 +68,10 @@ echo "[Info] ------------------------------------"
 echo "[Info] ENV github_ref: ${GITHUB_REF}"
 echo "[Info] ENV github_base_ref: ${GITHUB_BASE_REF}"
 echo "[Info] ENV github_event_name: ${GITHUB_EVENT_NAME}"
+echo "[Info] ENV Local Repo: $GITHUB_REPOSITORY"
+echo "[Info] ENV Build Source Repo: $GITHUB_REPOSITORY"
+echo "[Info] ENV Local Repo{}: ${GITHUB_REPOSITORY}"
+echo "[Info] ENV Build Source Repo{}: ${GITHUB_REPOSITORY}"
 
 # Now checking if we are on normal PR or on a forked PR
 # we usually assume we are on a fork
