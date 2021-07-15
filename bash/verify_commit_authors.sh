@@ -82,7 +82,7 @@ if [ ! -v $CI ]; then
 			echo "[Info] Building a local PR, RELAXED rules apply!"
 			STRICT_RULES="false"
 		else
-			echo "[Info] Building either a fork PR, STRICT rules apply!"
+			echo "[Info] Building a fork PR, STRICT rules apply!"
 		fi
 	fi
 else
