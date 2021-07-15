@@ -68,12 +68,12 @@ echo "[Info] ------------------------------------"
 # Now checking if we are on normal PR or on a forked PR
 # we usually assume we are on a fork
 STRICT_RULES="true"
-if [ ! -v $TRAVIS_PULL_REQUEST ]; then 
-	echo "[Info] Running on Travis CI"
-	echo "[Info] Repo Slug: ${TRAVIS_REPO_SLUG}"
-	echo "[Info] PR   Slug: ${TRAVIS_PULL_REQUEST_SLUG}"
+if [ ! -v $CI ]; then 
+	echo "[Info] Running on Github Actions"
+	echo "[Info] ENV Local Repo: $GITHUB_REPOSITORY"
+	echo "[Info] ENV Build Source Repo: $BUILD_REPOSITORY"
 
-	if [ "$TRAVIS_REPO_SLUG" ==  "$TRAVIS_PULL_REQUEST_SLUG" ]; then
+	if [ "$BUILD_REPOSITORY" == "$GITHUB_REPOSITORY" ]; then
 		echo "[Info] Building a local PR, RELAXED rules apply!"
 		STRICT_RULES="false"
 	else
