@@ -65,9 +65,13 @@ echo "[Info] ------------------------------------"
 echo "[Info] Fork detection"
 echo "[Info] ------------------------------------"
 
-echo "[Info] Repo Slug: ${BASE_REF}"
-echo "[Info] Repo Slug: ${TO_REPOSITORY}"
-echo "[Info] Repo Slug: ${FROM_REPOSITORY}"
+echo "[Info] ENV github_ref: ${GITHUB_REF}"
+echo "[Info] ENV github_base_ref: ${GITHUB_BASE_REF}"
+echo "[Info] ENV github_event_name: ${GITHUB_EVENT_NAME}"
+
+echo "[Info] ENV base_ref: ${BASE_REF}"
+echo "[Info] ENV to_repository: ${TO_REPOSITORY}"
+echo "[Info] ENV from_repository: ${FROM_REPOSITORY}"
 
 # Now checking if we are on normal PR or on a forked PR
 # we usually assume we are on a fork
