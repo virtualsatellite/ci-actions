@@ -77,7 +77,7 @@ STRICT_RULES="true"
 if [ ! -v $CI ]; then 
 	echo "[Info] Running on Github Actions"
 
-	if [ "$FROM_REPOSITORY" == "$TO_REPOSITORY" ]; then
+	if [ "$BUILD_REPOSITORY" == "$GITHUB_REPOSITORY" ]; then
 		echo "[Info] Building a local PR, RELAXED rules apply!"
 		STRICT_RULES="false"
 	else
