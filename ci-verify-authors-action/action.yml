@@ -20,5 +20,4 @@ runs:
     - run: ${{ github.action_path }}/../bash/verify_commit_authors.sh ${{ inputs.known_authors }}
       shell: bash
       env:
-          TO_REPOSITORY: ${{ github.ref }}
-          FROM_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
+          BUILD_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
