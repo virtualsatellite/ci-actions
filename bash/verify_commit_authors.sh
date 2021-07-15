@@ -77,13 +77,13 @@ if [ ! -v $CI ]; then
 	if [ "$GITHUB_EVENT_NAME" != "pull_request" ]; then
 		echo "[Info] Building a local branch, RELAXED rules apply!"
 		STRICT_RULES="false"	
-	fi
-
-	if [ "$BUILD_REPOSITORY" == "$GITHUB_REPOSITORY" ]; then
-		echo "[Info] Building a local PR, RELAXED rules apply!"
-		STRICT_RULES="false"
 	else
-		echo "[Info] Building either a fork PR, STRICT rules apply!"
+		if [ "$BUILD_REPOSITORY" == "$GITHUB_REPOSITORY" ]; then
+			echo "[Info] Building a local PR, RELAXED rules apply!"
+			STRICT_RULES="false"
+		else
+			echo "[Info] Building either a fork PR, STRICT rules apply!"
+		fi
 	fi
 else
 	echo "[Info] Not running on Github Actions"
