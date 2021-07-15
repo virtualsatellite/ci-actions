@@ -71,7 +71,7 @@ STRICT_RULES="true"
 if [ ! -v $CI ]; then 
 	echo "[Info] Running on Github Actions"
 	echo "[Info] ENV Local Repo: $GITHUB_REPOSITORY"
-        echo "[Info] ENV Build Source Repo: $BUILD_REPOSITORY"
+	echo "[Info] ENV Build Source Repo: $BUILD_REPOSITORY"
 
 	if [ "$BUILD_REPOSITORY" == "$GITHUB_REPOSITORY" ]; then
 		echo "[Info] Building a local PR, RELAXED rules apply!"
