@@ -23,5 +23,7 @@ runs:
           github_ref: ${{ github.ref }}
           github_base_ref: ${{ github.base_ref }}
           to_repository: ${{ github.ref }}
+          github_to_repository: ${{ github.repository }}
           github_event_name: ${{ github.event_name }}
+          github_from_repository: ${{ github.event.pull_request.head.repo.full_name }}
           from_repository: ${{ github.event.pull_request.head.repo.full_name }}
