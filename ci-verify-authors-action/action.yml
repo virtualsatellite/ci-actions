@@ -22,6 +22,6 @@ runs:
       env:
           github_ref: ${{ github.ref }}
           github_base_ref: ${{ github.base_ref }}
-          github_event_name: ${{ github.event_name }}
           to_repository: ${{ github.ref }}
+          github_event_name: ${{ github.event_name }}
           from_repository: ${{ github.event.pull_request.head.repo.full_name }}
