@@ -72,15 +72,21 @@ if [ ! -v $CI ]; then
 	echo "[Info] Running on Github Actions"
 	echo "[Info] ENV Local Repo: $GITHUB_REPOSITORY"
 	echo "[Info] ENV Build Source Repo: $BUILD_REPOSITORY"
+	echo "[Info] ENV Github Event Name: $GITHUB_EVENT_NAME"
+	
+	if [ "$GITHUB_EVENT_NAME" != "pull_request" ]; then
+		echo "[Info] Building a local branch, RELAXED rules apply!"
+		STRICT_RULES="false"	
+	fi
 
 	if [ "$BUILD_REPOSITORY" == "$GITHUB_REPOSITORY" ]; then
 		echo "[Info] Building a local PR, RELAXED rules apply!"
 		STRICT_RULES="false"
 	else
-		echo "[Info] Building either a fork PR or a branch, STRICT rules apply!"
+		echo "[Info] Building either a fork PR, STRICT rules apply!"
 	fi
 else
-	echo "[Info] Not running on Travis CI"
+	echo "[Info] Not running on Github Actions"
 fi
 
 echo "[Info] ------------------------------------"
