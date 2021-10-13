@@ -70,28 +70,28 @@ EOF
 }
 
 callGitHubGetReleaseId() {
-  RELEASE_ID=$(curl "https://api.github.com/repos/$GITHUB_REPO_FULL_NAME/releases/tags/$RELEASE_NAME?access_token=$GITHUB_TOKEN" | jq ".id")
+  RELEASE_ID=$(curl -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPO_FULL_NAME/releases/tags/$RELEASE_NAME" | jq ".id")
   echo "Received Release ID: $RELEASE_ID"
 }
 
 callGitHubCreateRelease() {
   printGitHubAccessInfos
   
-  curl --data "$(generatePostDataCreateRelease)" "https://api.github.com/repos/$GITHUB_REPO_FULL_NAME/releases?access_token=$GITHUB_TOKEN"
+  curl -H "Authorization: token $GITHUB_TOKEN" --data "$(generatePostDataCreateRelease)" "https://api.github.com/repos/$GITHUB_REPO_FULL_NAME/releases"
 }
 
 callGitHubPatchRelease() {
   callGitHubGetReleaseId
   printGitHubAccessInfos
 
-  curl -X PATCH --data "$(generatePostDataCreateRelease)" "https://api.github.com/repos/$GITHUB_REPO_FULL_NAME/releases/$RELEASE_ID?access_token=$GITHUB_TOKEN"
+  curl -H "Authorization: token $GITHUB_TOKEN" -X PATCH --data "$(generatePostDataCreateRelease)" "https://api.github.com/repos/$GITHUB_REPO_FULL_NAME/releases/$RELEASE_ID"
 }
 
 callGitHubDeleteRelease() {
   callGitHubGetReleaseId
   printGitHubAccessInfos
   
-  curl -X DELETE "https://api.github.com/repos/$GITHUB_REPO_FULL_NAME/releases/$RELEASE_ID?access_token=$GITHUB_TOKEN"
+  curl -H "Authorization: token $GITHUB_TOKEN" -X DELETE "https://api.github.com/repos/$GITHUB_REPO_FULL_NAME/releases/$RELEASE_ID"
 }
 
 callGitHubUploadAsset() {
