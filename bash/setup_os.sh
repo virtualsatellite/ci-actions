@@ -62,7 +62,7 @@ echo "apt install general packages"
 echo "-----------------------------------------------"
 sudo apt-get install ant expect jq
 
-if [[ ! -z "$JDK" && "$INSTALL_XVFB" != "no" ]]; then
+if [[ ! -z "$JDK" && "$JDK" != "no" ]]; then
     sudo apt-get install openjdk-${JDK}-jdk
 fi
 
