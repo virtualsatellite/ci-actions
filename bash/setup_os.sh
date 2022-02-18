@@ -33,6 +33,8 @@ printUsage() {
 # process all command line arguments
 while [ "$1" != "" ]; do
     case $1 in
+        -8  | --jdk8 )          JDK=8
+                                ;;
         -11 | --jdk11 )         JDK=11
                                 ;;
         -x | --xvfb )           INSTALL_XVFB=true
@@ -63,8 +65,7 @@ sudo apt-get install ant expect jq
 
 if [[ ! -z "$JDK" && "$JDK" == 11 ]]; then
     sudo apt-get install openjdk-11-jdk
-else
-    # JDK 8 is the default
+elif [[ ! -z "$JDK" && "$JDK" == 8 ]]; then
     sudo apt-get install openjdk-8-jdk
 fi
 
