@@ -69,7 +69,7 @@ checkforMavenProblems() {
 	| grep -v "\[WARNING\] The requested profile" \
 	| grep -v "Ignoring Bundle-ClassPath entry 'external:" \
 	| grep -v "An error occurred while transferring artifact packed:" \
-	| grep -v "Warning:  No system packages found in profile nor toolchain for" \	
+	| grep -v "Warning:  No system packages found in profile nor toolchain for" \
 	| grep -v "Retry another mirror:" \
 	| grep -v "Artifact not found:" \
 	| grep -v "An error occurred while transferring artifact canonical:" \
