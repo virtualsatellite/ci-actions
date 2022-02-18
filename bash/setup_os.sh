@@ -23,8 +23,9 @@ printUsage() {
 	echo "This command is calling apt to set up the OS."
 	echo ""
 	echo "Options:"
-	echo " -x, --xvfb            Option to install XVFB and Metacity. Usually needed by surefire UI tests."
-	echo " -a, --pkgs <pkgfile>  The name of of a file which contains the names for additional packages to be installed."
+	echo " -x,  --xvfb            Option to install XVFB and Metacity. Usually needed by surefire UI tests."
+	echo " -a,  --pkgs <pkgfile>  The name of of a file which contains the names for additional packages to be installed."
+	echo " -11, --jdk11           Install a jdk 11 instead of jdk 8 to the OS."
 	echo ""
 	echo "Copyright by DLR (German Aerospace Center)"
 }
@@ -32,6 +33,8 @@ printUsage() {
 # process all command line arguments
 while [ "$1" != "" ]; do
     case $1 in
+        -11 | --jdk11 )         JDK=11
+                                ;;
         -x | --xvfb )           INSTALL_XVFB=true
                                 ;;
         -p | --pkgs )           shift
@@ -56,7 +59,14 @@ echo ""
 echo "-----------------------------------------------"
 echo "apt install general packages"
 echo "-----------------------------------------------"
-sudo apt-get install openjdk-8-jdk ant expect jq
+sudo apt-get install ant expect jq
+
+if [[ ! -z "$JDK" && "$JDK" == 11 ]]; then
+    sudo apt-get install openjdk-11-jdk
+else
+    # JDK 8 is the default
+    sudo apt-get install openjdk-8-jdk
+fi
 
 
 if [[ ! -z "$INSTALL_XVFB" && "$INSTALL_XVFB" == true ]]; then
