@@ -24,7 +24,7 @@ printUsage() {
 	echo ""
 	echo "Options:"
 	echo " -x,  --xvfb            Option to install XVFB and Metacity. Usually needed by surefire UI tests."
-	echo " -a,  --pkgs <pkgfile>  The name of of a file which contains the names for additional packages to be installed."
+	echo " -p,  --pkgs <pkgfile>  The name of of a file which contains the names for additional packages to be installed."
 	echo " -j,  --jdk <version>   Install a jdk with the given version to the OS."
 	echo ""
 	echo "Copyright by DLR (German Aerospace Center)"
@@ -62,12 +62,9 @@ echo "apt install general packages"
 echo "-----------------------------------------------"
 sudo apt-get install ant expect jq
 
-if [[ ! -z "$JDK" && "$JDK" == "11" ]]; then
-    sudo apt-get install openjdk-11-jdk
-elif [[ ! -z "$JDK" && "$JDK" == "8" ]]; then
-    sudo apt-get install openjdk-8-jdk
+if [[ ! -z "$JDK" ]]; then
+    sudo apt-get install openjdk-${JDK}-jdk
 fi
-
 
 if [[ ! -z "$INSTALL_XVFB" && "$INSTALL_XVFB" == true ]]; then
 	echo ""
