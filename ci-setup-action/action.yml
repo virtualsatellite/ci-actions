@@ -22,5 +22,5 @@ inputs:
 runs:
   using: "composite"
   steps: 
-    - run: ${{ github.action_path }}/../bash/setup_os.sh ${{ inputs.xvfb }} -p ${{ inputs.pkgs_file }} -jdk${{ inputs.jdk }}
+    - run: ${{ github.action_path }}/../bash/setup_os.sh ${{ inputs.xvfb }} -p ${{ inputs.pkgs_file }} -jdk ${{ inputs.jdk }}
       shell: bash

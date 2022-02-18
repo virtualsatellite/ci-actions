@@ -18,14 +18,14 @@ set +e
 COMMAND=$0
 
 printUsage() {
-	echo "usage: ${COMMAND} -x -p <pkgfile>"
+	echo "usage: ${COMMAND} -x -p <pkgfile> -jdk <version>"
 	echo ""
 	echo "This command is calling apt to set up the OS."
 	echo ""
 	echo "Options:"
 	echo " -x,  --xvfb            Option to install XVFB and Metacity. Usually needed by surefire UI tests."
 	echo " -a,  --pkgs <pkgfile>  The name of of a file which contains the names for additional packages to be installed."
-	echo " -11, --jdk11           Install a jdk 11 instead of jdk 8 to the OS."
+	echo " -j,  --jdk <version>   Install a jdk with the given version to the OS."
 	echo ""
 	echo "Copyright by DLR (German Aerospace Center)"
 }
@@ -33,9 +33,8 @@ printUsage() {
 # process all command line arguments
 while [ "$1" != "" ]; do
     case $1 in
-        -8  | --jdk8 )          JDK=8
-                                ;;
-        -11 | --jdk11 )         JDK=11
+        -j  | --jdk )           shift
+                                JDK=$1
                                 ;;
         -x | --xvfb )           INSTALL_XVFB=true
                                 ;;
@@ -63,9 +62,9 @@ echo "apt install general packages"
 echo "-----------------------------------------------"
 sudo apt-get install ant expect jq
 
-if [[ ! -z "$JDK" && "$JDK" == 11 ]]; then
+if [[ ! -z "$JDK" && "$JDK" == "11" ]]; then
     sudo apt-get install openjdk-11-jdk
-elif [[ ! -z "$JDK" && "$JDK" == 8 ]]; then
+elif [[ ! -z "$JDK" && "$JDK" == "8" ]]; then
     sudo apt-get install openjdk-8-jdk
 fi
 
