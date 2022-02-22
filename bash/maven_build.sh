@@ -68,6 +68,7 @@ checkforMavenProblems() {
 	| grep -v "\[WARNING\] Some attempts to read artifact" \
 	| grep -v "\[WARNING\] The requested profile" \
 	| grep -v "\[WARNING\] No system packages found in profile nor toolchain for" \
+	| grep -v "\[WARNING\] Bundle-ClassPath entry tools.jar does not exist in" \
 	| grep -v "Ignoring Bundle-ClassPath entry 'external:" \
 	| grep -v "An error occurred while transferring artifact packed:" \
 	| grep -v "Retry another mirror:" \
