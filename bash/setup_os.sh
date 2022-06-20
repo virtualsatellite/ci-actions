@@ -18,13 +18,14 @@ set +e
 COMMAND=$0
 
 printUsage() {
-	echo "usage: ${COMMAND} -x -p <pkgfile>"
+	echo "usage: ${COMMAND} -x -p <pkgfile> -jdk <version>"
 	echo ""
 	echo "This command is calling apt to set up the OS."
 	echo ""
 	echo "Options:"
-	echo " -x, --xvfb            Option to install XVFB and Metacity. Usually needed by surefire UI tests."
-	echo " -a, --pkgs <pkgfile>  The name of of a file which contains the names for additional packages to be installed."
+	echo " -x,  --xvfb            Option to install XVFB and Metacity. Usually needed by surefire UI tests."
+	echo " -p,  --pkgs <pkgfile>  The name of of a file which contains the names for additional packages to be installed."
+	echo " -j,  --jdk <version>   Install a jdk with the given version to the OS. Use no for no java to be installed."
 	echo ""
 	echo "Copyright by DLR (German Aerospace Center)"
 }
@@ -32,6 +33,9 @@ printUsage() {
 # process all command line arguments
 while [ "$1" != "" ]; do
     case $1 in
+        -j  | --jdk )           shift
+                                JDK=$1
+                                ;;
         -x | --xvfb )           INSTALL_XVFB=true
                                 ;;
         -p | --pkgs )           shift
@@ -56,8 +60,11 @@ echo ""
 echo "-----------------------------------------------"
 echo "apt install general packages"
 echo "-----------------------------------------------"
-sudo apt-get install openjdk-8-jdk ant expect jq
+sudo apt-get install ant expect jq
 
+if [[ ! -z "$JDK" && "$JDK" != "no" ]]; then
+    sudo apt-get install openjdk-${JDK}-jdk
+fi
 
 if [[ ! -z "$INSTALL_XVFB" && "$INSTALL_XVFB" == true ]]; then
 	echo ""

@@ -10,6 +10,9 @@
 name: 'Virtual Satellite 4 - Build Environment Variable Setup'
 description: 'GitHub Action for setting up the build environment for successfully executing virtual satellite workflows'
 inputs:
+  jdk:
+     description: 'Set the JDK version to be used'
+     default: '8'
   xvfb:
     desription: 'Set the xvfb option'
     default: ''
@@ -19,5 +22,5 @@ inputs:
 runs:
   using: "composite"
   steps: 
-    - run: ${{ github.action_path }}/../bash/setup_os.sh ${{ inputs.xvfb }} -p ${{ inputs.pkgs_file }}
+    - run: ${{ github.action_path }}/../bash/setup_os.sh ${{ inputs.xvfb }} -p ${{ inputs.pkgs_file }} -j ${{ inputs.jdk }}
       shell: bash
