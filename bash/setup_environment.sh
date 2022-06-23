@@ -91,6 +91,11 @@ if [ "$VS_JAR_VTK" == "" ]; then
 fi 
 
 if [ "$VS_JAR_VTK" == "" ]; then
+	echo "Trying to find vtk7 installation with find vtk7.jar"
+	VS_JAR_VTK=$(find /usr -name vtk7.jar)
+fi 
+
+if [ "$VS_JAR_VTK" == "" ]; then
 	echo "Trying to find vtk6 installation with which vtk6.jar"
 	VS_JAR_VTK=$(which vtk6.jar)
 fi 
