@@ -14,9 +14,10 @@ echo "[Info] ------------------------------------"
 echo "[Info] Debug section start"
 echo "[Info] ------------------------------------"
 
-ping frs.sourceforge.net
-ping web.sourceforge.net
-ping 216.105.38.21
+#ping frs.sourceforge.net
+#ping web.sourceforge.net
+#ping 216.105.38.21
+ping google.com
 
 echo "[Info] ------------------------------------"
 echo "[Info] Debug section end"
