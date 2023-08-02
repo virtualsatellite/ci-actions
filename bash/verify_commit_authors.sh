@@ -14,10 +14,15 @@ echo "[Info] ------------------------------------"
 echo "[Info] Debug section start"
 echo "[Info] ------------------------------------"
 
-#ping frs.sourceforge.net
-#ping web.sourceforge.net
-#ping 216.105.38.21
-ping google.com
+echo "[Info] Ping google:"
+curl google.com
+echo "[Info] Ping frs.sf:"
+curl frs.sourceforge.net
+echo "[Info] Ping web.sf:"
+curl web.sourceforge.net
+echo "[Info] Ping ip:"
+curl 216.105.38.21
+
 
 echo "[Info] ------------------------------------"
 echo "[Info] Debug section end"
