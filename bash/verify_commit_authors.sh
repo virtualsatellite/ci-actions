@@ -11,6 +11,18 @@
 # *******************************************************************************/
 
 echo "[Info] ------------------------------------"
+echo "[Info] Debug section start"
+echo "[Info] ------------------------------------"
+
+ping frs.sourceforge.net
+ping web.sourceforge.net
+ping 216.105.38.21
+
+echo "[Info] ------------------------------------"
+echo "[Info] Debug section end"
+echo "[Info] ------------------------------------"
+
+echo "[Info] ------------------------------------"
 echo "[Info] Verify commit authors"
 echo "[Info] ------------------------------------"
 echo "[Info] "
