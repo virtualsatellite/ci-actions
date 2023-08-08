@@ -44,9 +44,6 @@ setupSourceforgeSecrets() {
 	echo "------------------"
 	eval "$(ssh-agent -s)"
 
-	echo "[Info] Ping frs.sf:"
-	ping -w 1 -c 1 frs.sourceforge.net
-
 	# Decrypt the key for accessign the 
 	# deployment store and add it to ssh-agent
 	echo "Adding sourceforge as known SSH host"
