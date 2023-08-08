@@ -11,23 +11,6 @@
 # *******************************************************************************/
 
 echo "[Info] ------------------------------------"
-echo "[Info] Debug section start"
-echo "[Info] ------------------------------------"
-
-echo "[Info] Ping frs.sf:"
-ping -w 1 -c 1 frs.sourceforge.net
-
-echo "[Info] Ping web.sf:"
-ping -w 1 -c 1 web.sourceforge.net
-
-echo "[Info] Ping google:"
-ping -w 1 -c 1 google.com
-
-echo "[Info] ------------------------------------"
-echo "[Info] Debug section end"
-echo "[Info] ------------------------------------"
-
-echo "[Info] ------------------------------------"
 echo "[Info] Verify commit authors"
 echo "[Info] ------------------------------------"
 echo "[Info] "
