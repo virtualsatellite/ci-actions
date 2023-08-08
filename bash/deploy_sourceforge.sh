@@ -56,9 +56,6 @@ setupSourceforgeSecrets() {
 	chmod 600 "${SSH_DIR}/known_hosts"
 	ssh-keyscan "frs.sourceforge.net" >> "${SSH_DIR}/known_hosts"
 
-	echo "[Info] Ping frs.sf:"
-	ping -w 1 -c 1 frs.sourceforge.net
-
 	# Prepare sourceforge secrets
 	echo "Connecting to sourceforge"
 	mkdir -p -m 700 tmp/.sourceforge_ssh
