@@ -82,7 +82,7 @@ upload() {
 	echo "Starting P2 uploads..."
 	if [[ -d $LOCAL_DIR_P2 ]] ; then
 		echo "Uploading p2 directory..."
-		rsync $RSYNC_OPTIONS "$LOCAL_DIR_P2" "franztobias@216.105.38.21:/home/frs/project/$REMOTE_DIR_P2"
+		rsync $RSYNC_OPTIONS "$LOCAL_DIR_P2" "franztobias@frs.sourceforge.net:/home/frs/project/$REMOTE_DIR_P2"
 	else
 		echo "P2 directory was not found. Nothing was uploaded."
 	fi
@@ -92,7 +92,7 @@ upload() {
 	
 	if [[ -d $LOCAL_DIR_BIN ]] ; then
 		echo "Uploading bin directory..."
-		rsync $RSYNC_OPTIONS "$LOCAL_DIR_BIN" "franztobias@216.105.38.21:/home/frs/project/$REMOTE_DIR_BIN"
+		rsync $RSYNC_OPTIONS "$LOCAL_DIR_BIN" "franztobias@frs.sourceforge.net:/home/frs/project/$REMOTE_DIR_BIN"
 	else
 		echo "Bin directory was not found. Nothing was uploaded."
 	fi
