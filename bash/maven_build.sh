@@ -35,6 +35,7 @@ printUsage() {
 	echo "Options:"
 	echo " -j, --jobs <jobname>	    The name of the Travis-CI job to be build."
 	echo " -p, --profile <profile>  The name of the maven profile to be build."
+	echo " -m, --maven <version>    The maven version to be used."
 	echo ""
 	echo "Jobname:"
 	echo " dependencies  Downloads and installs maven dependencies, e.g. overtarget."
@@ -97,6 +98,25 @@ callMavenSurefire() {
 	(grep -n "\(Rule violated\|BUILD FAILED\)" ant.log || exit 0 && exit 1;)
 }
 
+callSetupMaven() {
+	if [[ ! -z "$MAVEN_VERSION" ]]; then
+		echo "Maven - Check if instalation file exists"
+		if [[ ! -f ./maven.tar.gz ]]; then
+			echo "Maven - Downloading Maven ${MAVEN_VERSION}"
+	    	curl -o maven.tar.gz https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+	    fi
+		echo "Maven - Unpacking Maven"
+		tar -xvf maven.tar.gz
+		echo "Maven - Setup Environment Variables"
+		M2_HOME="./apache-maven-${MAVEN_VERSION}"
+		PATH="$M2_HOME/bin:$PATH"
+		export PATH
+		export M2_Home
+		echo "Maven - Print Version"
+		mvn --version
+	fi
+}
+
 callMavenSurefireAndCoverageHeadless() {
         sudo apt-get update
         sudo apt-get install xvfb metacity
@@ -156,6 +176,9 @@ while [ "$1" != "" ]; do
         -p | --profile )    	shift
                                 MAVEN_PROFILE=$1
                                 ;;
+        -m | --maven )    	    shift
+                                MAVEN_VERSION=$1
+                                ;;
         -h | --help )           printUsage
                                 exit
                                 ;;
@@ -173,6 +196,8 @@ case $MAVEN_PROFILE in
     * )                 printUsage
                         exit 1
 esac
+
+callSetupMaven
 
 # Decide which job to run
 case $TRAVIS_JOB in
