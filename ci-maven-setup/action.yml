@@ -12,7 +12,7 @@ description: 'GitHub Action for setting up a specific maven version'
 inputs:
   maven_version:
      description: 'Set the Maven version to be used'
-     default: '8'
+     default: '3.9.6'
 runs:
   using: "composite"
   steps: 
