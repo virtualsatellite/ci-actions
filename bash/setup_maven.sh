@@ -60,7 +60,7 @@ callSetupMaven() {
 		M2_HOME="./apache-maven-${MAVEN_VERSION}"
 		PATH="$M2_HOME/bin:$PATH"
 		export PATH
-		export M2_Home
+		export M2_HOME
 		echo "Maven - Print Version"
 		mvn --version
 	fi
