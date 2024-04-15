@@ -20,6 +20,6 @@ runs:
            ${{ github.action_path }}/../bash/setup_maven.sh -m ${{ inputs.maven-version }} 
            echo "${M2_HOME}/bin" >> $GITHUB_PATH
            echo "M2_HOME=${M2_HOME}" >> $GITHUB_ENV
-           echo $GITHUB_PATH
-           echo $GITHUB_ENV
+           cat $GITHUB_PATH
+           cat $GITHUB_ENV
       shell: bash
