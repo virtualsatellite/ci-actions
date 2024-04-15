@@ -48,23 +48,23 @@ done
 
 
 callSetupMaven() {
-	if [[ ! -z "$MAVEN_VERSION" ]]; then
-		echo "Maven - Check if instalation file exists"
-		if [[ ! -f ./maven.tar.gz ]]; then
-			echo "Maven - Downloading Maven ${MAVEN_VERSION}"
-	    	curl -o maven.tar.gz https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
-	    fi
-		echo "Maven - Unpacking Maven"
-		tar -xvf maven.tar.gz
-		echo "Maven - Setup Environment Variables"
-		M2_HOME="./apache-maven-${MAVEN_VERSION}"
-		PATH="$M2_HOME/bin:$PATH"
-		export PATH
-		export M2_HOME
-		echo "Maven - Print Version"
-		mvn --version
-	fi
+	echo "Maven - Check if instalation file exists"
+	if [[ ! -f ./maven.tar.gz ]]; then
+		echo "Maven - Downloading Maven ${MAVEN_VERSION}"
+    	curl -o maven-${MAVEN_VERSION}.tar.gz https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+    fi
+	echo "Maven - Unpacking Maven"
+	tar -xvf maven-${MAVEN_VERSION}.tar.gz
+	echo "Maven - Setup Environment Variables"
+	M2_HOME="./apache-maven-${MAVEN_VERSION}"
+	PATH="$M2_HOME/bin:$PATH"
+	echo "PATH: ${PATH}"
+	echo "M2_HOME: ${M2_HOME}"
+	echo "Maven - Print Version"
+	mvn --version
 }
 
 callSetupMaven
 
+export PATH
+export M2_HOME
