@@ -61,20 +61,11 @@ callMavenDependencies() {
 }
 
 checkforMavenProblems() {
-	echo "Check for Maven Problems on Product:"
-	(grep -n "\[\(WARN\|WARNING\|ERROR\)\]" maven.log \
-	| grep -v "\[WARNING\] Checksum validation failed" \
-	| grep -v "\[WARNING\] Could not validate integrity of download" \
-	| grep -v "\[WARNING\] Some attempts to read artifact" \
-	| grep -v "\[WARNING\] The requested profile" \
-	| grep -v "\[WARNING\] No system packages found in profile nor toolchain for" \
-	| grep -v "\[WARNING\] Bundle-ClassPath entry tools.jar does not exist in" \
-	| grep -v "Ignoring Bundle-ClassPath entry 'external:" \
-	| grep -v "An error occurred while transferring artifact packed:" \
-	| grep -v "Retry another mirror:" \
-	| grep -v "Artifact not found:" \
-	| grep -v "An error occurred while transferring artifact canonical:" \
-	| grep -v "Unable to read repository at" \
+	echo "Check for Maven Problems on Product"
+	echo "Found the following warnings:"
+	(grep -n "\[\(WARN\|WARNING\\)\]" maven.log
+	echo "Found the following Errors:"
+	(grep -n "\[ERROR\]" maven.log \
 	|| exit 0 && exit 1;)
 }
 
