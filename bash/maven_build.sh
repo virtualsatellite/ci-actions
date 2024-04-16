@@ -63,7 +63,7 @@ callMavenDependencies() {
 checkforMavenProblems() {
 	echo "Check for Maven Problems on Product"
 	echo "Found the following warnings:"
-	(grep -n "\[\(WARN\|WARNING\\)\]" maven.log
+	grep -n "\[\(WARN\|WARNING\\)\]" maven.log
 	echo "Found the following Errors:"
 	(grep -n "\[ERROR\]" maven.log \
 	|| exit 0 && exit 1;)
