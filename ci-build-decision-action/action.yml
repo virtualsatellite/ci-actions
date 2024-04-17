@@ -25,8 +25,8 @@ runs:
         source ${{ github.action_path }}/../bash/build_decision.sh
         echo "--- Current Build Decision...  $BUILD_TYPE_DECISION"
         echo "--- Current Deploy Decision... $DEPLOY_TYPE_DECISION"
-        echo "::set-output name=build_type::$BUILD_TYPE_DECISION"
-        echo "::set-output name=deploy_type::$DEPLOY_TYPE_DECISION"
+        echo "build_type=$BUILD_TYPE_DECISION" >> $GITHUB_OUTPUT
+        echo "deploy_type=$DEPLOY_TYPE_DECISION" >> $GITHUB_OUTPUT
       shell: bash
       env:
         github_ref: ${{ github.ref }}
