@@ -1,0 +1,27 @@
+#/*******************************************************************************
+# * Copyright (c) 2020 German Aerospace Center (DLR), Simulation and Software Technology, Germany.
+# *
+# * This program and the accompanying materials are made available under the
+# * terms of the Eclipse Public License 2.0 which is available at
+# * http://www.eclipse.org/legal/epl-2.0.
+# *
+# * SPDX-License-Identifier: EPL-2.0
+# *******************************************************************************/
+name: 'Virtual Satellite 4 - Setup Maven'
+description: 'GitHub Action for setting up a specific maven version'
+inputs:
+  maven-version:
+     description: 'Set the Maven version to be used'
+     default: '3.9.6'
+runs:
+  using: "composite"
+  steps: 
+    - run: |
+           source ${{ github.action_path }}/../bash/setup_maven.sh -m ${{ inputs.maven-version }} 
+           echo "MAVEN EXECUTABLE : ${M2_HOME}/bin"
+           echo "MAVEN M2 HOME: M2_HOME=${M2_HOME}"
+           echo "${M2_HOME}/bin" >> $GITHUB_PATH
+           echo "M2_HOME=${M2_HOME}" >> $GITHUB_ENV
+           cat $GITHUB_PATH
+           cat $GITHUB_ENV
+      shell: bash
