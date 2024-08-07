@@ -9,11 +9,7 @@
 # *
 # * SPDX-License-Identifier: EPL-2.0
 # *******************************************************************************/
-
-# --------------------------------------------------------------------------------------------
-# This script tries to setup the environment variables for native librarie sucha s vtk and zmq
-# --------------------------------------------------------------------------------------------
-set -e
+set +e
 
 
 # Store the name of the command calling from commandline to be properly
