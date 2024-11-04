@@ -39,8 +39,8 @@ printUsage() {
 	echo "Jobname:"
 	echo " dependencies  Downloads and installs maven dependencies, e.g. overtarget."
 	echo " surefire      To run all surefire tests including junit and swtbot."
-	echo " surecoverage  To run all surefire tests including junit and swtbot and finally upload reports to codecov."
-	echo " sureheadless  To run all surefire tests including junit and swtbot and finally upload reports to codecov. Alos starts xvfb and metacity."
+	echo " surecoverage  To run all surefire tests including junit and swtbot and perform coverage check."
+	echo " sureheadless  To run all surefire tests including junit and swtbot and perform coverage check. Also starts xvfb and metacity."
 	echo " spotbugs      To run spotbugs static code analysis."
 	echo " checkstyle    To run checkstyle for testing style guidelines."
 	echo " assemble      To run full assemble including the java docs build."
@@ -99,10 +99,7 @@ callMavenSurefireAndCoverageHeadless() {
 
 callMavenSurefireAndCoverage() {
 	callMavenSurefire
-	echo "CodeCov"
-	bash <(curl -s https://codecov.io/bash)
 }
-
 
 callMavenSpotbugs() {
 	echo "Maven - Spotbugs - ${MAVEN_PROFILE}"
